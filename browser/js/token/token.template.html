@@ -1,9 +1,76 @@
 <div id="token">
 	<div class="container">
 		<div class="row">
+			<div class="col-md-6">
+				<table class="table">
+				  <thead class="thead-dark">
+				    <tr>
+				      <th scope="col">Metadata</th>
+				      <th scope="col"></th>
+				    </tr>
+				  </thead>
+				  <tbody>
+				    <tr>
+				      <th scope="row">Name</th>
+				      <td>{{ utxoMetadata.metadataOfIssuence
+.data.description }}</td>
+				    <tr>
+				      <th scope="row">Symbol</th>
+				      <td>{{ utxoMetadata.metadataOfIssuence
+.data.tokenName }}</td>
+				    </tr>
+				    <tr>
+				      <th scope="row">Issuer</th>
+				      <td>{{ utxoMetadata.metadataOfIssuence
+.data.issuer }}</td>
+				    </tr>
+				    <tr>
+				      <th scope="row">Total Supply</th>
+				      <td>{{ tokenMetadata.totalSupply }}</td>
+				    </tr>
+				    <tr>
+				      <th scope="row">Token ID</th>
+				      <td>{{ tokenMetadata.tokenId }}</td>
+				    </tr>
+				  </tbody>
+				</table>
+			</div>
+			<div class="col-md-6">
+				<table class="table">
+				  <thead class="thead-dark">
+				    <tr>
+				      <th scope="col">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+				      <th scope="col"></th>
+				    </tr>
+				  </thead>
+				  <tbody>
+				    <tr>
+				      <th scope="row">First Block</th>
+				      <td>{{ tokenMetadata.firstBlock }}</td>
+				    </tr>
+				    <tr>
+				      <th scope="row">Number of Holders</th>
+				      <td>{{ tokenMetadata.numOfHolders }}</td>
+				    </tr>
+				    <tr>
+				      <th scope="row">Number of Transfers</th>
+				      <td>{{ tokenMetadata.numOfTransfers }}</td>
+				    </tr>
+				    <tr>
+				      <th scope="row">Aggregation Policy</th>
+				      <td>{{ tokenMetadata.aggregationPolicy }}</td>
+				    </tr>
+				    <tr>
+				      <th scope="row">Number of Issuance</th>
+				      <td>{{ tokenMetadata.numOfIssuance }}</td>
+				    </tr>
+				  </tbody>
+				</table>
+			</div>
+		</div>
+		<div class="row">
 			<div class="col-md-12">
-
-				<table class="table" id="holders-table">
+				<table class="table hover" id="holders-table">
 				  <thead class="thead-dark">
 				    <tr>
 				      <th scope="col">Rank</th>
@@ -21,8 +88,6 @@
 				    </tr>
 				  </tbody>
 				</table>
-
-				
 			</div>
 		</div>
 	</div>

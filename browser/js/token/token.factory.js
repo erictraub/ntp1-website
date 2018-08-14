@@ -3,6 +3,8 @@ app.factory('TokenFactory', function ($http, NeblioAPIFactory) {
     const TokenFactory = {};
 
     TokenFactory.getAllTokenDataById = function(tokenId) {
+        const tokenData = {};
+
     	const promises = [
     		NeblioAPIFactory.fetchTokenMetaData(tokenId),
     		NeblioAPIFactory.fetchTokenHolders(tokenId)
@@ -10,11 +12,14 @@ app.factory('TokenFactory', function ($http, NeblioAPIFactory) {
 
     	return Promise.all(promises)
     	.then(results => {
-    		return {
-    			tokenMetadata: results[0],
-    			tokenHolders: results[1]
-    		};
-    	});
+            tokenData.tokenMetadata = results[0];
+            tokenData.tokenHolders = results[1];
+            return NeblioAPIFactory.fetchTokenMetaDataUTXO(tokenId, tokenData.tokenMetadata.someUtxo);
+    	})
+        .then(utxoMetadata => {
+            tokenData.utxoMetadata = utxoMetadata;
+            return tokenData;
+        });
     };
 
 	TokenFactory.getTokenIdFromIdentifier = function(tokenIdentifier) {

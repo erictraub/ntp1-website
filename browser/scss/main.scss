@@ -1,9 +1,25 @@
 * {
   box-sizing: border-box;
+  font-family: 'Open Sans', sans-serif;
 }
 
-body {
-  background: #fdfdfd;
+body, html {
+  background: #013164;
+  min-height: 100vh;
+}
+
+table {
+	background-color: white !important;
+	tr:nth-child(even) {background-color: #f5f8fc;}	
+	th, td {
+		border: 0px !important;
+	}
+}
+
+table.hover {
+	tr:hover {
+		background-color: #f5f8fc;
+	}
 }
 
 @mixin clearfix {

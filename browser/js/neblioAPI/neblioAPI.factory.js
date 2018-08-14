@@ -9,6 +9,13 @@ app.factory('NeblioAPIFactory', function ($http) {
 		});
     };
 
+    NeblioAPIFactory.fetchTokenMetaDataUTXO = function(tokenId, utxo) {
+		return $http.get(`/api/neblioAPI/token/${tokenId}/utxo/${utxo}/metadata`)
+		.then(function(response) {
+			return response.data;
+		});
+    };
+
     NeblioAPIFactory.fetchTokenId = function(tokenSymbol) {
 		return $http.get(`/api/neblioAPI/token/${tokenSymbol}/tokenId`)
 		.then(function(response) {
