@@ -35,6 +35,21 @@ router.get('/token/:tokenSymbol/tokenId', function (req, res) {
     });
 });
 
+// get token holders by tokenId
+router.get('/token/:tokenId/holders', function (req, res) {
+    const tokenId = req.params.tokenId;
+    const requestOptions = {
+        uri: `${neblioApiBaseUrl}/stakeholders/${tokenId}`,
+        method: 'GET',
+        json: true
+    };
+
+    rp(requestOptions)
+    .then(response => {
+        res.json(response);
+    });
+});
+
 
 
 

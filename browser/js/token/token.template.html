@@ -1,5 +1,29 @@
 <div id="token">
 	<div class="container">
-		<h1>TOKEN PAGE</h1>
+		<div class="row">
+			<div class="col-md-12">
+
+				<table class="table" id="holders-table">
+				  <thead class="thead-dark">
+				    <tr>
+				      <th scope="col">Rank</th>
+				      <th scope="col">Address</th>
+				      <th scope="col">Amount</th>
+				      <th scope="col">Percentage</th>
+				    </tr>
+				  </thead>
+				  <tbody>
+				    <tr ng-repeat="holder in holders track by $index">
+				      <th scope="row">{{ $index + 1 }}</th>
+				      <td>{{ holder.address }}</td>
+				      <td>{{ holder.amount }}</td>
+				      <td>{{ holder.percentage * 100 | number: 4 }}%</td>
+				    </tr>
+				  </tbody>
+				</table>
+
+				
+			</div>
+		</div>
 	</div>
 </div>

@@ -16,6 +16,25 @@ app.factory('NeblioAPIFactory', function ($http) {
 		});
     };
 
+    NeblioAPIFactory.fetchTokenHolders = function(tokenId) {
+    	return $http.get(`/api/neblioAPI/token/${tokenId}/holders`)
+		.then(function(response) {
+			let data = response.data;
+			data.holders = data.holders.sort((a, b) => b.amount - a.amount);
+			
+			let totalTokenCount = 0;
+			data.holders.forEach(holder => {
+				totalTokenCount += holder.amount;
+			});
+
+			data.holders.forEach(holder => {
+				holder.percentage = holder.amount / totalTokenCount;
+			});
+
+			return data;
+		});
+    };
+
 
     return NeblioAPIFactory;
 
