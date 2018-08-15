@@ -8,9 +8,27 @@ body, html {
   min-height: 100vh;
 }
 
+body {
+  padding-bottom: 30px;
+}
+
+table a {
+  color: #2475b9 !important;
+
+  &:hover {
+    color: #008bff !important;
+    text-decoration: none !important;
+  }
+}
+
+
+//////////////////////////////
+// tables
+//////////////////////////////
+
 table {
 	background-color: white !important;
-	tr:nth-child(even) {background-color: #f5f8fc;}	
+	tr:nth-child(odd) {background-color: #f5f8fc;}	
 	th, td {
 		border: 0px !important;
 	}
@@ -21,6 +39,19 @@ table.hover {
 		background-color: #f5f8fc;
 	}
 }
+
+thead.padded {
+  tr {
+    th {
+      padding-top: 20px;
+      padding-bottom: 20px;
+    }
+  }
+}
+
+//////////////////////////////
+// end tables
+//////////////////////////////
 
 @mixin clearfix {
   &:after {
@@ -40,3 +71,4 @@ table.hover {
 @import 'about/main';
 @import 'tutorial/main';
 @import 'login/main';
+@import 'token/main';

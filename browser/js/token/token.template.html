@@ -1,14 +1,19 @@
 <div id="token">
 	<div class="container">
 		<div class="row">
+			<div class="col-md-12">
+				<div class="media mb-2 token-header">
+					<img class="mr-3" height="100" ng-src="{{ utxoMetadata.iconUrl }}">
+					<div class="media-body align-self-center">
+						<h1>{{ utxoMetadata.metadataOfIssuence
+.data.description }}</h1>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
 			<div class="col-md-6">
 				<table class="table">
-				  <thead class="thead-dark">
-				    <tr>
-				      <th scope="col">Metadata</th>
-				      <th scope="col"></th>
-				    </tr>
-				  </thead>
 				  <tbody>
 				    <tr>
 				      <th scope="row">Name</th>
@@ -37,12 +42,6 @@
 			</div>
 			<div class="col-md-6">
 				<table class="table">
-				  <thead class="thead-dark">
-				    <tr>
-				      <th scope="col">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
-				      <th scope="col"></th>
-				    </tr>
-				  </thead>
 				  <tbody>
 				    <tr>
 				      <th scope="row">First Block</th>
@@ -71,7 +70,7 @@
 		<div class="row">
 			<div class="col-md-12">
 				<table class="table hover" id="holders-table">
-				  <thead class="thead-dark">
+				  <thead class="thead padded">
 				    <tr>
 				      <th scope="col">Rank</th>
 				      <th scope="col">Address</th>
@@ -82,7 +81,9 @@
 				  <tbody>
 				    <tr ng-repeat="holder in holders track by $index">
 				      <th scope="row">{{ $index + 1 }}</th>
-				      <td>{{ holder.address }}</td>
+				      <td>
+				      	<a ui-sref="address({ address: holder.address })">{{ holder.address }}</a>
+				      </td>
 				      <td>{{ holder.amount }}</td>
 				      <td>{{ holder.percentage * 100 | number: 4 }}%</td>
 				    </tr>

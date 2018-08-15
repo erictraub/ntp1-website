@@ -12,7 +12,11 @@ app.factory('NeblioAPIFactory', function ($http) {
     NeblioAPIFactory.fetchTokenMetaDataUTXO = function(tokenId, utxo) {
 		return $http.get(`/api/neblioAPI/token/${tokenId}/utxo/${utxo}/metadata`)
 		.then(function(response) {
-			return response.data;
+			let metadata = response.data;
+			metadata.metadataOfIssuence.data.urls.forEach(urlObj => {
+				if (urlObj.name === "icon") metadata.iconUrl = urlObj.url;
+			});
+			return metadata;
 		});
     };
 
