@@ -1,3 +1,3 @@
 module.exports = {
-	neblioApiBaseUrl: 'https://ntp1node.nebl.io/ntp1'
+	neblioApiBaseUrl: 'https://ntp1node.nebl.io'
 }

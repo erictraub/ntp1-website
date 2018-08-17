@@ -1,0 +1,88 @@
+<div id="transaction">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-5">
+				<div>
+					<p ng-repeat="address in txInfo.fromAddresses track by $index">
+						{{ address | cut:true:30:'...' }}
+					</p>
+				</div>
+			</div>
+			<div class="col-md-2">
+				<div>
+					<p>⇨</p>
+				</div>
+			</div>
+			<div class="col-md-5">
+				<div>
+					<p ng-repeat="address in txInfo.receivingAddresses track by $index">
+						{{ address | cut:true:30:'...' }}
+					</p>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-6">
+				<table class="table">
+				  <thead class="thead padded">
+				    <tr>
+				      <th scope="col" colspan="2">Summary</th>
+				    </tr>
+				  </thead>
+				  <tbody>
+				    <tr>
+				      <th scope="row">Transaction ID</th>
+				      <td>{{ txInfo.txid | cut:true:20:'...' }}</td>
+				    <tr>
+				      <th scope="row">Received Time</th>
+				      <td>{{ txInfo.displayTime }}</td>
+				    </tr>
+				    <tr>
+				      <th scope="row">Confirmations</th>
+				      <td>{{ txInfo.confirmations }}</td>
+				    </tr>
+				    <tr>
+				      <th scope="row">Included In Block</th>
+				      <td>{{ txInfo.blockheight }}</td>
+				    </tr>
+				    <tr>
+				      <th scope="row">Block Hash</th>
+				      <td>{{ txInfo.blockhash | cut:true:20:'...' }}</td>
+				    </tr>
+				  </tbody>
+				</table>
+			</div>
+			<div class="col-md-6">
+				<table class="table">
+				  <thead class="thead padded">
+				    <tr>
+				      <th scope="col" colspan="2">Inputs and Outputs</th>
+				    </tr>
+				  </thead>
+				  <tbody>
+				    <tr>
+				      <th scope="row">Total Input <span>(NEBL)</span></th>
+				      <td>{{ txInfo.totalInput }}</td>
+				    </tr>
+				    <tr>
+				      <th scope="row">Total Output <span>(NEBL)</span></th>
+				      <td>{{ txInfo.totalOutput }}</td>
+				    </tr>
+				    <tr>
+				      <th scope="row">Fee <span>(sats)</span></th>
+				      <td>{{ txInfo.fee }}</td>
+				    </tr>
+				    <tr>
+				      <th scope="row">Token ID</th>
+				      <td>{{ txInfo.tokenId | cut:true:20:'...' }}</td>
+				    </tr>
+				    <tr>
+				      <th scope="row">Tokens Transfered</th>
+				      <td>{{ txInfo.tokenAmount }}</td>
+				    </tr>
+				  </tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,9 +1,14 @@
 app.config(function ($stateProvider) {
 
     $stateProvider.state('transaction', {
-        url: '/transaction',
+        url: '/tx/:txId',
         controller: 'TransactionController',
-        templateUrl: 'js/transaction/transaction.template.html'
+        templateUrl: 'js/transaction/transaction.template.html',
+        resolve: {
+        	TxInfo: function($stateParams, NeblioAPIFactory) {
+                return NeblioAPIFactory.fetchNTP1TransactionInfo($stateParams.txId);
+            }
+        }
     });
 
 });

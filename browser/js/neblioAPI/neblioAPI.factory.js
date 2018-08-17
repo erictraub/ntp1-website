@@ -46,6 +46,69 @@ app.factory('NeblioAPIFactory', function ($http) {
 		});
     };
 
+    NeblioAPIFactory.fetchNTP1AddressInfo = function(address) {
+		return $http.get(`/api/neblioAPI/address/${address}/ntp1/info`)
+		.then(function(response) {
+			return response.data;
+		});
+    };
+
+    NeblioAPIFactory.fetchAddressInsightsData = function(address) {
+		return $http.get(`/api/neblioAPI/ins/address/${address}`)
+		.then(function(response) {
+			return response.data;
+		});
+    };
+
+    NeblioAPIFactory.fetchNTP1TransactionInfo = function(txId) {
+		return $http.get(`/api/neblioAPI/ntp1/tx/${txId}`)
+		.then(function(response) {
+			let txData = response.data;
+			txData.displayTime = new Date(txData.time);
+			
+			let totalInput = 0;
+			let tokenId = null;
+			let tokenAmount = 0;
+			txData.vin.forEach(obj => {
+				totalInput += obj.value;
+				if (obj.tokens.length) {
+					obj.tokens.forEach(tokenObj => {
+						if (tokenObj.tokenId) tokenId = tokenObj.tokenId;
+						if (tokenObj.amount) tokenAmount = tokenObj.amount;
+					});
+				};
+			});
+
+			let totalOutput = 0;
+			txData.vout.forEach(obj => {
+				totalOutput += obj.value;
+			});
+
+			let fromAddresses = [];
+			txData.vin.forEach(vinObj => {
+				vinObj.previousOutput.addresses.forEach(address => {
+					fromAddresses.push(address);
+				});
+			});
+
+			let receivingAddresses = [];
+			txData.vout.forEach(voutObj => {
+				if (voutObj.scriptPubKey.addresses) voutObj.scriptPubKey.addresses.forEach(address => {
+					receivingAddresses.push(address);
+				});
+			});
+
+			txData.totalInput = totalInput / 10000000;
+			txData.totalOutput = totalOutput / 10000000;
+			txData.tokenId = tokenId;
+			txData.tokenAmount = tokenAmount;
+			txData.fromAddresses = fromAddresses;
+			txData.receivingAddresses = receivingAddresses;
+
+			return txData;
+		});
+    };
+
 
     return NeblioAPIFactory;
 

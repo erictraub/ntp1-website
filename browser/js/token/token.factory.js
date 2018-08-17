@@ -24,6 +24,7 @@ app.factory('TokenFactory', function ($http, NeblioAPIFactory) {
 
 	TokenFactory.getTokenIdFromIdentifier = function(tokenIdentifier) {
 		if (tokenIdentifier.length < 8) {
+            tokenIdentifier = tokenIdentifier.toUpperCase();
 			return NeblioAPIFactory.fetchTokenId(tokenIdentifier)
 			.then(data => {
 				return data.tokenId;
