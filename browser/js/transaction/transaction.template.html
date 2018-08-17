@@ -1,6 +1,6 @@
 <div id="transaction">
 	<div class="container">
-		<div class="row">
+<!-- 		<div class="row">
 			<div class="col-md-5">
 				<div>
 					<p ng-repeat="address in txInfo.fromAddresses track by $index">
@@ -20,7 +20,7 @@
 					</p>
 				</div>
 			</div>
-		</div>
+		</div> -->
 		<div class="row">
 			<div class="col-md-6">
 				<table class="table">
@@ -79,6 +79,50 @@
 				    <tr>
 				      <th scope="row">Tokens Transfered</th>
 				      <td>{{ txInfo.tokenAmount }}</td>
+				    </tr>
+				  </tbody>
+				</table>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<table class="table scripts-table" style="table-layout: fixed;">
+				  <thead class="thead padded">
+				    <tr>
+				      <th scope="col">Input Scripts</th>
+				    </tr>
+				  </thead>
+				  <tbody style="border-top: 0px;">
+				    <tr ng-repeat="vinObj in txInfo.vin">
+				      <td class="break-word">
+				      	<b>asm</b><br>
+				      	{{ vinObj.scriptSig.asm }}
+				      	<br>
+				      	<b>hex</b><br>
+				      	{{ vinObj.scriptSig.hex }}
+				      </td>
+				    </tr>
+				  </tbody>
+				</table>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<table class="table scripts-table" style="table-layout: fixed;">
+				  <thead class="thead padded">
+				    <tr>
+				      <th scope="col">Output Scripts</th>
+				    </tr>
+				  </thead>
+				  <tbody>
+				    <tr ng-repeat="voutObj in txInfo.vout">
+				      <td class="break-word">
+				      	<b>asm</b><br>
+				      	{{ voutObj.scriptPubKey.asm }}
+				      	<br>
+				      	<b>hex</b><br>
+				      	{{ voutObj.scriptPubKey.hex }}
+				      </td>
 				    </tr>
 				  </tbody>
 				</table>

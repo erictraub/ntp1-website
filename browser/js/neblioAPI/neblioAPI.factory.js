@@ -98,12 +98,33 @@ app.factory('NeblioAPIFactory', function ($http) {
 				});
 			});
 
+			let tokenTxInfo = {};
+			txData.vin.forEach(vinObj => {
+				if (vinObj.tokens && vinObj.tokens.length) {
+					vinObj.tokens.forEach(tokenObj => {
+						// tokenTxInfo.amount = tokenObj.amount;
+						// tokenTxInfo.tokenId = tokenObj.tokenId;
+						tokenTxInfo.fromAddresses = vinObj.previousOutput.addresses[0];
+					});
+				}
+			});
+			txData.vout.forEach(voutObj => {
+				if (voutObj.tokens && voutObj.tokens.length) {
+					voutObj.tokens.forEach(tokenObj => {
+						tokenTxInfo.amount = tokenObj.amount;
+						tokenTxInfo.tokenId = tokenObj.tokenId;
+						tokenTxInfo.toAddress = voutObj.scriptPubKey.addresses[0];
+					});
+				}
+			});
+
 			txData.totalInput = totalInput / 10000000;
 			txData.totalOutput = totalOutput / 10000000;
 			txData.tokenId = tokenId;
 			txData.tokenAmount = tokenAmount;
 			txData.fromAddresses = fromAddresses;
 			txData.receivingAddresses = receivingAddresses;
+			txData.tokenTxInfo = tokenTxInfo;
 
 			return txData;
 		});
