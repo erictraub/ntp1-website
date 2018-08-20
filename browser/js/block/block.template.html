@@ -1,0 +1,107 @@
+<div id="block">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="page-header">
+					<h1 class="bold">Block&nbsp;
+						<span class="header-hash break-word">{{ blockData.hash }}</span>
+					</h1>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-6">
+				<table class="table">
+				  <tbody>
+				    <tr>
+				      <th scope="row">Transactions</th>
+				      <td>{{ blockData.tx.length }}</td>
+				    </tr>
+				    <tr>
+				      <th scope="row">Confirmations</th>
+				      <td>{{ blockData.confirmations }}</td>
+				    </tr>
+				    <tr>
+				      <th scope="row">Height</th>
+				      <td>{{ blockData.height }}</td>
+				    </tr>
+				    <tr>
+				      <th scope="row">Reward</th>
+				      <td>{{ blockData.reward }}</td>
+				    </tr>
+				    <tr>
+				      <th scope="row">Timestamp</th>
+				      <td>{{ blockData.displayTime }}</td>
+				    </tr>
+				    <tr>
+				      <th scope="row">Size</th>
+				      <td>{{ blockData.size / 1000 }} kB</td>
+				    </tr>
+				  </tbody>
+				</table>
+			</div>
+			<div class="col-md-6">
+				<table class="table">
+				  <tbody>
+				    <tr>
+				      <th scope="row">Block Hash</th>
+				      <td>{{ blockData.hash | cut:true:30:'...' }}</td>
+				    </tr>
+				    <tr>
+				      <th scope="row">Next Block Hash</th>
+				      <td>
+				      	<a ui-sref="block({ blockIdentifier: blockData.nextblockhash })">
+				      		{{ blockData.nextblockhash | cut:true:30:'...' }}
+				      	</a>
+				      </td>
+				    </tr>
+				    <tr>
+				      <th scope="row">Previous Block Hash</th>
+				      <td>
+				      	<a ui-sref="block({ blockIdentifier: blockData.hash })">
+				      		{{ blockData.previousblockhash | cut:true:30:'...' }}
+				      	</a>
+				      </td>
+				    </tr>
+				    <tr>
+				      <th scope="row">Merkle Root</th>
+				      <td>{{ blockData.merkleroot | cut:true:30:'...' }}</td>
+				    </tr>
+				    <tr>
+				      <th scope="row">Difficulty</th>
+				      <td>{{ blockData.difficulty }}</td>
+				    </tr>
+				    <tr>
+				      <th scope="row">Bits</th>
+				      <td>{{ blockData.bits }}</td>
+				    </tr>
+				  </tbody>
+				</table>
+			</div>
+		</div>
+		<!-- transactions row -->
+		<div class="row">
+			<div class="col-md-12">
+				<table class="table">
+				  <thead class="thead">
+				    <tr>
+				      <th scope="col">Transaction ID</th>
+				      <th scope="col">Time</th>
+				      <th scope="col">Sender</th>
+				      <th scope="col">Recipient</th>
+				      <th scope="col">Tx Type</th>
+				      <th scope="col">Amount</th>
+				    </tr>
+				  </thead>
+				  <tbody>
+				    <tr ng-repeat="tx in blockData.txInfo">
+				      <td>{{ tx.txid | cut:true:20:'...' }}</td>
+				      <td>{{ tx.displayTime }}</td>
+				    </tr>
+				  </tbody>
+				</table>
+			</div>
+		</div>
+		<!-- end transactions row -->
+	</div>
+</div>

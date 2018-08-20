@@ -111,6 +111,36 @@ router.get('/ntp1/tx/:txId', function (req, res) {
     });
 });
 
+// get block by blockhash
+router.get('/ins/block/:blockHash', function (req, res) {
+    const blockHash = req.params.blockHash;
+    const requestOptions = {
+        uri: `${neblioApiBaseUrl}/ins/block/${blockHash}`,
+        method: 'GET',
+        json: true
+    };
+
+    rp(requestOptions)
+    .then(response => {
+        res.json(response);
+    });
+});
+
+// get blockHash by block-index
+router.get('/ins/block/index/:blockIndex', function (req, res) {
+    const blockIndex = req.params.blockIndex;
+    const requestOptions = {
+        uri: `${neblioApiBaseUrl}/ins/block-index/${blockIndex}`,
+        method: 'GET',
+        json: true
+    };
+
+    rp(requestOptions)
+    .then(response => {
+        res.json(response);
+    });
+});
+
 
 
 

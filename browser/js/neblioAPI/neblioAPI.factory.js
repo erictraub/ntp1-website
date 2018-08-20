@@ -1,4 +1,4 @@
-app.factory('NeblioAPIFactory', function ($http) {
+app.factory('NeblioAPIFactory', function ($http, TransactionFactory) {
 
     const NeblioAPIFactory = {};
 
@@ -64,14 +64,14 @@ app.factory('NeblioAPIFactory', function ($http) {
 		return $http.get(`/api/neblioAPI/ntp1/tx/${txId}`)
 		.then(function(response) {
 			let txData = response.data;
-			txData.displayTime = new Date(txData.time);
+			txData.displayTime = TransactionFactory.getDisplayTime(txData.time);
 			
 			let totalInput = 0;
 			let tokenId = null;
 			let tokenAmount = 0;
 			txData.vin.forEach(obj => {
 				totalInput += obj.value;
-				if (obj.tokens.length) {
+				if (obj.tokens && obj.tokens.length) {
 					obj.tokens.forEach(tokenObj => {
 						if (tokenObj.tokenId) tokenId = tokenObj.tokenId;
 						if (tokenObj.amount) tokenAmount = tokenObj.amount;
@@ -86,7 +86,7 @@ app.factory('NeblioAPIFactory', function ($http) {
 
 			let fromAddresses = [];
 			txData.vin.forEach(vinObj => {
-				vinObj.previousOutput.addresses.forEach(address => {
+				if (vinObj.previousOutput) vinObj.previousOutput.addresses.forEach(address => {
 					fromAddresses.push(address);
 				});
 			});
@@ -104,7 +104,7 @@ app.factory('NeblioAPIFactory', function ($http) {
 					vinObj.tokens.forEach(tokenObj => {
 						// tokenTxInfo.amount = tokenObj.amount;
 						// tokenTxInfo.tokenId = tokenObj.tokenId;
-						tokenTxInfo.fromAddresses = vinObj.previousOutput.addresses[0];
+						tokenTxInfo.fromAddress = vinObj.previousOutput.addresses[0];
 					});
 				}
 			});
@@ -127,6 +127,22 @@ app.factory('NeblioAPIFactory', function ($http) {
 			txData.tokenTxInfo = tokenTxInfo;
 
 			return txData;
+		});
+    };
+
+    NeblioAPIFactory.fetchBlockByHash = function(blockHash) {
+		return $http.get(`/api/neblioAPI/ins/block/${blockHash}`)
+		.then(function(response) {
+			let blockData = response.data;
+			blockData.displayTime = TransactionFactory.getDisplayTime(blockData.time * 1000);
+			return blockData;
+		});
+    };
+
+    NeblioAPIFactory.fetchBlockHashByIndex = function(blockIndex) {
+		return $http.get(`/api/neblioAPI/ins/block/index/${blockIndex}`)
+		.then(function(response) {
+			return response.data;
 		});
     };
 

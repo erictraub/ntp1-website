@@ -58,6 +58,20 @@ thead.padded {
 // end tables
 //////////////////////////////
 
+//////////////////////////////
+// text
+//////////////////////////////
+
+.bold {
+  font-weight: bold;
+}
+
+
+//////////////////////////////
+// end text
+//////////////////////////////
+
+
 @mixin clearfix {
   &:after {
     content: "";
@@ -77,3 +91,4 @@ thead.padded {
 @import 'tutorial/main';
 @import 'login/main';
 @import 'token/main';
+@import 'block/main';

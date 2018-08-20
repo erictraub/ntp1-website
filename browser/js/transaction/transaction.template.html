@@ -1,5 +1,37 @@
 <div id="transaction">
 	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<table class="table">
+				  <thead class="thead padded">
+				    <tr>
+				      <th scope="col" colspan="3">
+				      	<h1 class="bold">Transaction</h1>
+				      </th>
+				    </tr>
+				  </thead>
+				  <tbody>
+				    <tr>
+				      <td>
+				      	<a ui-sref="address({ address: txInfo.tokenTxInfo.fromAddress })">
+				      		{{ txInfo.tokenTxInfo.fromAddress }}
+				      	</a>
+				  	  </td>
+				      <td class="text-center">
+				      	{{ txInfo.tokenTxInfo.amount }} XXXX
+				      	<br>
+				      	<i class="fa fa-long-arrow-right fa-2x" aria-hidden="true"></i>
+				      </td>
+				      <td class="text-right">
+				      	<a ui-sref="address({ address: txInfo.tokenTxInfo.toAddress })">
+				      		{{ txInfo.tokenTxInfo.toAddress }}
+				      	</a>
+				      </td>
+				    </tr>
+				  </tbody>
+				</table>
+			</div>
+		</div>
 <!-- 		<div class="row">
 			<div class="col-md-5">
 				<div>
@@ -33,6 +65,7 @@
 				    <tr>
 				      <th scope="row">Transaction ID</th>
 				      <td>{{ txInfo.txid | cut:true:20:'...' }}</td>
+				    </tr>
 				    <tr>
 				      <th scope="row">Received Time</th>
 				      <td>{{ txInfo.displayTime }}</td>
@@ -74,10 +107,14 @@
 				    </tr>
 				    <tr>
 				      <th scope="row">Token ID</th>
-				      <td>{{ txInfo.tokenId | cut:true:20:'...' }}</td>
+				      <td>
+				      	<a ui-sref="token({ tokenIdentifier: txInfo.tokenId })">
+				      		{{ txInfo.tokenId | cut:true:20:'...' }}
+				      	</a>
+				      </td>
 				    </tr>
 				    <tr>
-				      <th scope="row">Tokens Transfered</th>
+				      <th scope="row">Amount</th>
 				      <td>{{ txInfo.tokenAmount }}</td>
 				    </tr>
 				  </tbody>
