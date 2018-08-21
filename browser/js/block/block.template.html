@@ -58,7 +58,7 @@
 				    <tr>
 				      <th scope="row">Previous Block Hash</th>
 				      <td>
-				      	<a ui-sref="block({ blockIdentifier: blockData.hash })">
+				      	<a ui-sref="block({ blockIdentifier: blockData.previousblockhash })">
 				      		{{ blockData.previousblockhash | cut:true:30:'...' }}
 				      	</a>
 				      </td>
@@ -95,8 +95,46 @@
 				  </thead>
 				  <tbody>
 				    <tr ng-repeat="tx in blockData.txInfo">
-				      <td>{{ tx.txid | cut:true:20:'...' }}</td>
-				      <td>{{ tx.displayTime }}</td>
+				      <td>
+				      	<span ng-show="tx.tokenId">
+				      		<a ui-sref="transaction({ txId: tx.txid })">{{ tx.txid | cut:true:15:'...' }}</a>
+				      	</span>
+				      	<span ng-show="!tx.tokenId">
+				      		<a href="https://explorer.nebl.io/tx/7{{ tx.txid }}" target="_blank">{{ tx.txid | cut:true:15:'...' }}</a>
+				      	</span>
+				      </td>
+				      <td>
+				      	{{ tx.displayTime }}
+				      </td>
+				      <td>
+				      	<span ng-show="tx.tokenId">
+				      		<a ui-sref="address({ address: tx.tokenTxInfo.fromAddress })">
+				      		{{ tx.tokenTxInfo.fromAddress | cut:true:15:'...' }}</a>
+				      	</span>
+				      	<span ng-show="!tx.tokenId">
+				      		{{  tx.fromAddresses[0] ? tx.fromAddresses[0] : '- -' | cut:true:15:'...' }}
+				      	</span>
+				      </td>
+				      <td>
+				      	<span ng-show="tx.tokenId">
+				      		<a ui-sref="address({ address: tx.tokenTxInfo.toAddress })">
+				      		{{ tx.tokenTxInfo.toAddress | cut:true:15:'...' }}</a>
+				      	</span>
+				      	<span ng-show="!tx.tokenId">
+				      		{{ tx.receivingAddresses[0] ? tx.receivingAddresses[0] : '- -' | cut:true:15:'...' }}
+				      	</span>
+				      </td>
+				      <td>
+				      	<span ng-show="tx.tokenId">
+				      		<a ui-sref="token({ tokenIdentifier: tx.tokenId })">{{ tx.tokenId ? 'NTP1' : 'NEBL' }}</a>
+				      	</span>
+				      	<span ng-show="!tx.tokenId">
+				      		{{ tx.tokenId ? 'NTP1' : 'NEBL' }}
+				      	</span>
+				      </td>
+				      <td>
+				      	{{ tx.tokenId ? tx.tokenAmount : tx.totalsent / 10000000 }}
+				      </td>
 				    </tr>
 				  </tbody>
 				</table>
