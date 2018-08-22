@@ -18,7 +18,7 @@
 				      	</a>
 				  	  </td>
 				      <td class="text-center">
-				      	{{ txInfo.tokenTxInfo.amount }} XXXX
+				      	{{ txInfo.tokenTxInfo.amount }} <b><a ui-sref="token({ tokenIdentifier: txInfo.tokenId })">{{ txInfo.tokenMetadata.tokenName }}</a></b>
 				      	<br>
 				      	<i class="fa fa-long-arrow-right fa-2x" aria-hidden="true"></i>
 				      </td>

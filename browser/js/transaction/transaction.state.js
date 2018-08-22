@@ -6,7 +6,15 @@ app.config(function ($stateProvider) {
         templateUrl: 'js/transaction/transaction.template.html',
         resolve: {
         	TxInfo: function($stateParams, NeblioAPIFactory) {
-                return NeblioAPIFactory.fetchNTP1TransactionInfo($stateParams.txId);
+                let allTxInfo;
+                return NeblioAPIFactory.fetchNTP1TransactionInfo($stateParams.txId)
+                .then(txInfo => {
+                    allTxInfo = txInfo;
+                    return NeblioAPIFactory.fetchAllTokenMetaData(txInfo.tokenId)
+                }).then(tokenMetadata => {
+                    allTxInfo.tokenMetadata = tokenMetadata;
+                    return allTxInfo;
+                });
             }
         }
     });

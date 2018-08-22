@@ -25,6 +25,16 @@ app.factory('BlockFactory', function ($http, NeblioAPIFactory) {
 		})
 		.then(txInfoArray => {
 			blockData.txInfo = txInfoArray;
+			const promises = [];
+			blockData.txInfo.forEach(txObj => {
+				if (txObj.tokenId) promises.push(NeblioAPIFactory.fetchAllTokenMetaData(txObj.tokenId));
+			});
+			return Promise.all(promises)
+		}).then(results => {
+			blockData.allTokensMetadata = {};
+			results.forEach(result => {
+				blockData.allTokensMetadata[result.tokenId] = result;
+			});
 			return blockData;
 		});
 	};

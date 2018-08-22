@@ -126,11 +126,9 @@
 				      </td>
 				      <td>
 				      	<span ng-show="tx.tokenId">
-				      		<a ui-sref="token({ tokenIdentifier: tx.tokenId })">{{ tx.tokenId ? 'NTP1' : 'NEBL' }}</a>
+				      		<a ui-sref="token({ tokenIdentifier: tx.tokenId })">{{ blockData.allTokensMetadata[tx.tokenId].tokenName }}</a>
 				      	</span>
-				      	<span ng-show="!tx.tokenId">
-				      		{{ tx.tokenId ? 'NTP1' : 'NEBL' }}
-				      	</span>
+				      	<span ng-show="!tx.tokenId">NEBL</span>
 				      </td>
 				      <td>
 				      	{{ tx.tokenId ? tx.tokenAmount : tx.totalsent / 10000000 }}
