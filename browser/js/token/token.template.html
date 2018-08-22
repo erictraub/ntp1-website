@@ -3,10 +3,9 @@
 		<div class="row">
 			<div class="col-md-12">
 				<div class="media mb-2 token-header">
-					<img class="mr-3" height="100" ng-src="{{ utxoMetadata.iconUrl }}">
+					<img class="mr-3" height="100" ng-src="{{ tokenMetadata.iconImage }}">
 					<div class="media-body align-self-center">
-						<h1>{{ utxoMetadata.metadataOfIssuence
-.data.description }}</h1>
+						<h1>{{ tokenMetadata.description }}</h1>
 					</div>
 				</div>
 			</div>
@@ -17,17 +16,14 @@
 				  <tbody>
 				    <tr>
 				      <th scope="row">Name</th>
-				      <td>{{ utxoMetadata.metadataOfIssuence
-.data.description }}</td>
+				      <td>{{ tokenMetadata.description }}</td>
 				    <tr>
 				      <th scope="row">Symbol</th>
-				      <td>{{ utxoMetadata.metadataOfIssuence
-.data.tokenName }}</td>
+				      <td>{{ tokenMetadata.tokenName }}</td>
 				    </tr>
 				    <tr>
 				      <th scope="row">Issuer</th>
-				      <td>{{ utxoMetadata.metadataOfIssuence
-.data.issuer }}</td>
+				      <td>{{ tokenMetadata.issuer }}</td>
 				    </tr>
 				    <tr>
 				      <th scope="row">Total Supply</th>

@@ -2,21 +2,10 @@ app.factory('NeblioAPIFactory', function ($http, TransactionFactory) {
 
     const NeblioAPIFactory = {};
 
-    NeblioAPIFactory.fetchTokenMetaData = function(tokenId) {
+    NeblioAPIFactory.fetchAllTokenMetaData = function(tokenId) {
 		return $http.get(`/api/neblioAPI/token/${tokenId}/metadata`)
 		.then(function(response) {
 			return response.data;
-		});
-    };
-
-    NeblioAPIFactory.fetchTokenMetaDataUTXO = function(tokenId, utxo) {
-		return $http.get(`/api/neblioAPI/token/${tokenId}/utxo/${utxo}/metadata`)
-		.then(function(response) {
-			let metadata = response.data;
-			metadata.metadataOfIssuence.data.urls.forEach(urlObj => {
-				if (urlObj.name === "icon") metadata.iconUrl = urlObj.url;
-			});
-			return metadata;
 		});
     };
 

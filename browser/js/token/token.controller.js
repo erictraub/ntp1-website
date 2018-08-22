@@ -1,12 +1,15 @@
-app.controller('TokenController', function ($scope, AllTokenData) {
+app.controller('TokenController', function ($scope, TokenMetadata, NeblioAPIFactory) {
 
-	console.log('All Token Data: ', AllTokenData);
+	console.log('All Token Data: ', TokenMetadata);
 
-	$scope.tokenMetadata = AllTokenData.tokenMetadata;
-	$scope.utxoMetadata = AllTokenData.utxoMetadata;
-	$scope.holders = AllTokenData.tokenHolders.holders;
-	setTimeout(function() {
-		$('#holders-table').DataTable();
-	}, 0);
+	$scope.tokenMetadata = TokenMetadata;
+	NeblioAPIFactory.fetchTokenHolders(TokenMetadata.tokenId)
+	.then(response => {
+		$scope.holders = response.holders;
+		setTimeout(function() {
+			$scope.$evalAsync();
+			$('#holders-table').DataTable();
+		}, 0);
+	})
 
 });

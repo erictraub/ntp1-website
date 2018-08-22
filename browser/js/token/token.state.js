@@ -5,10 +5,10 @@ app.config(function ($stateProvider) {
         controller: 'TokenController',
         templateUrl: 'js/token/token.template.html',
         resolve: {
-        	AllTokenData: function($stateParams, TokenFactory) {
+        	TokenMetadata: function($stateParams, NeblioAPIFactory, TokenFactory) {
                 return TokenFactory.getTokenIdFromIdentifier($stateParams.tokenIdentifier)
                 .then(tokenId => {
-                    return TokenFactory.getAllTokenDataById(tokenId);
+                    return NeblioAPIFactory.fetchAllTokenMetaData(tokenId);
                 });
             }
         }

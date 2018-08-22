@@ -4,7 +4,8 @@ var mongoose = require('mongoose');
 var schema = new mongoose.Schema({
     tokenId: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
     divisibility: {
         type: Number

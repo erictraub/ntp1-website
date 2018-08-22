@@ -1,6 +1,6 @@
 module.exports = {
-  "DATABASE_URI": "mongodb://localhost:27017/fsg-app",
-  "SESSION_SECRET": "Optimus Prime is my real dad",
+  "DATABASE_URI": "mongodb://localhost:27017/ntp1-website",
+  "SESSION_SECRET": "well what a good door led",
   "TWITTER": {
     "consumerKey": "INSERT_TWITTER_CONSUMER_KEY_HERE",
     "consumerSecret": "INSERT_TWITTER_CONSUMER_SECRET_HERE",

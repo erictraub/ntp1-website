@@ -3,36 +3,28 @@ const router = require('express').Router();
 module.exports = router;
 const neblioApiBaseUrl = require('../../configure/variables').neblioApiBaseUrl;
 const rp = require('request-promise');
-
+const mongoose = require('mongoose');
+const Token = mongoose.model('Token');
+const helperFuncs = require('../../helperFunctions');
 
 // get token metadata by id
 router.get('/token/:tokenId/metadata', function (req, res) {
     const tokenId = req.params.tokenId;
-    const requestOptions = {
-        uri: `${neblioApiBaseUrl}/ntp1/tokenmetadata/${tokenId}`,
-        method: 'GET',
-        json: true
-    };
-
-    rp(requestOptions)
-    .then(response => {
-        res.json(response);
-    });
-});
-
-// get UTXO metadata of token by id
-router.get('/token/:tokenId/utxo/:utxo/metadata', function (req, res) {
-    const tokenId = req.params.tokenId;
-    const utxo = req.params.utxo;
-    const requestOptions = {
-        uri: `${neblioApiBaseUrl}/ntp1/tokenmetadata/${tokenId}/${utxo}`,
-        method: 'GET',
-        json: true
-    };
-
-    rp(requestOptions)
-    .then(response => {
-        res.json(response);
+    
+    Token.findOne({ tokenId: tokenId })
+    .then(token => {
+        if (token) {  // if token is already in mongodb
+            console.log('Token present in mongodb.')
+            return new Promise((resolve, reject) => resolve(token));
+        }
+        else {  // if token is not yet in mongodb
+            console.log('Token not present in mongodb. Calling Neblio API.')
+            return helperFuncs.getAllMetadataForToken(tokenId);
+        }
+    })
+    .then(formattedMetadata => {
+        res.send(formattedMetadata);
+        return Token.create(formattedMetadata);
     });
 });
 
