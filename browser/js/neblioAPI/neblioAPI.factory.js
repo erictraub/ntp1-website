@@ -135,6 +135,13 @@ app.factory('NeblioAPIFactory', function ($http, TransactionFactory) {
 		});
     };
 
+    NeblioAPIFactory.fetchAllTransactionsForAddress = function(address) {
+    	return $http.get(`/api/neblioAPI/ins/address/${address}/transactions`)
+		.then(function(response) {
+			return response.data;
+		});
+    };
+
 
     return NeblioAPIFactory;
 

@@ -133,6 +133,21 @@ router.get('/ins/block/index/:blockIndex', function (req, res) {
     });
 });
 
+// get all transactions for address
+router.get('/ins/address/:address/transactions', function (req, res) {
+    const address = req.params.address;
+    const requestOptions = {
+        uri: `${neblioApiBaseUrl}/ins/txs?address=${address}`,
+        method: 'GET',
+        json: true
+    };
+
+    rp(requestOptions)
+    .then(response => {
+        res.json(response);
+    });
+});
+
 
 
 

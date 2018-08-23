@@ -5,16 +5,9 @@ app.config(function ($stateProvider) {
         controller: 'AddressController',
         templateUrl: 'js/address/address.template.html',
         resolve: {
-        	AllAddressData: function($stateParams, NeblioAPIFactory) {
-                const promises = [ 
-                    NeblioAPIFactory.fetchNTP1AddressInfo($stateParams.address)
-                    // NeblioAPIFactory.fetchAddressInsightsData($stateParams.address)
-                ];
+        	AllAddressData: function($stateParams, AddressFactory) {
+                return AddressFactory.getNTP1AddressInfoAndTxData($stateParams.address);
                 
-                return Promise.all(promises)
-                .then(results => {
-                    return results;
-                });
             }
         }
     });
