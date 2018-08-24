@@ -9,6 +9,14 @@ app.factory('NeblioAPIFactory', function ($http, TransactionFactory) {
 		});
     };
 
+    NeblioAPIFactory.getTokenMetadataForArrayOfTokenIds = function(tokenIdArray) {
+    	const promises = [];
+    	tokenIdArray.forEach(id => {
+    		promises.push(NeblioAPIFactory.fetchAllTokenMetaData(id));
+    	});
+    	return Promise.all(promises);
+    };
+
     NeblioAPIFactory.fetchTokenId = function(tokenSymbol) {
 		return $http.get(`/api/neblioAPI/token/${tokenSymbol}/tokenId`)
 		.then(function(response) {

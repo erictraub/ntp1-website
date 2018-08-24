@@ -18,6 +18,17 @@ app.factory('AddressFactory', function ($http, NeblioAPIFactory) {
     	});
     };
 
+    AddressFactory.getTokenBalancesFromUtxoArray = function(utxoArray, address) {
+        const balancesObj = {};
+        utxoArray.forEach(utxo => {
+            if (utxo.tokenTxInfo.tokenId && utxo.tokenTxInfo.toAddress === address) {
+                if (!balancesObj[utxo.tokenTxInfo.tokenId]) balancesObj[utxo.tokenTxInfo.tokenId] = 0;
+                balancesObj[utxo.tokenTxInfo.tokenId] += utxo.tokenTxInfo.amount;
+            }
+        });
+        return balancesObj;
+    };
+
     return AddressFactory;
 
 });

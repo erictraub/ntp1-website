@@ -76,11 +76,18 @@
 				    </tr>
 				    <tr>
 				      <th scope="row">Included In Block</th>
-				      <td>{{ txInfo.blockheight }}</td>
+				      <td>
+				      	<a ui-sref="block({ blockIdentifier: txInfo.blockhash })">	{{ txInfo.blockheight }}
+				      	</a>
+				      </td>
 				    </tr>
 				    <tr>
 				      <th scope="row">Block Hash</th>
-				      <td>{{ txInfo.blockhash | cut:true:20:'...' }}</td>
+				      <td>
+				      	<a ui-sref="block({ blockIdentifier: txInfo.blockhash })">
+				      		{{ txInfo.blockhash | cut:true:20:'...' }}
+				      	</a>
+				      </td>
 				    </tr>
 				  </tbody>
 				</table>

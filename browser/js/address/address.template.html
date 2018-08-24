@@ -15,7 +15,7 @@
 				    </tr>
 				  </thead>
 				  <tbody>
-				    <tr ng-repeat="tx in utxosData">
+				    <tr ng-repeat="tx in utxosData" ng-show="tx.tokenId">
 				      <td>
 				      	<span ng-show="tx.tokenId">
 				      		<a ui-sref="transaction({ txId: tx.txid })">{{ tx.txid | cut:true:15:'...' }}</a>
@@ -47,7 +47,7 @@
 				      </td>
 				      <td>
 				      	<span ng-show="tx.tokenId">
-				      		<a ui-sref="token({ tokenIdentifier: tx.tokenId })">{{ blockData.allTokensMetadata[tx.tokenId].tokenName }}</a>
+				      		<a ui-sref="token({ tokenIdentifier: tx.tokenId })">{{ tokensObj[tx.tokenId].tokenName }}</a>
 				      	</span>
 				      	<span ng-show="!tx.tokenId">NEBL</span>
 				      </td>
