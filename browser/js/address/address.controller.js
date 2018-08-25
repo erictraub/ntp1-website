@@ -1,8 +1,6 @@
-app.controller('AddressController', function ($scope, AllAddressData) {
+app.controller('AddressController', function ($scope, AddressInfo) {
 
-	console.log('All Address Data: ', AllAddressData);
-	$scope.utxosData = AllAddressData.utxoTxData;
-	$scope.tokensObj = AllAddressData.tokensData;
-
+	console.log('Address Info: ', AddressInfo);
+	$scope.AddressInfo = AddressInfo;
 
 });

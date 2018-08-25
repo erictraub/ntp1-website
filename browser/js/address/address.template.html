@@ -3,60 +3,7 @@
 		<!-- utxos table row -->
 		<div class="row">
 			<div class="col-md-12">
-				<table class="table">
-				  <thead class="thead">
-				    <tr>
-				      <th scope="col">Transaction ID</th>
-				      <th scope="col">Time</th>
-				      <th scope="col">Sender</th>
-				      <th scope="col">Recipient</th>
-				      <th scope="col">Tx Type</th>
-				      <th scope="col">Amount</th>
-				    </tr>
-				  </thead>
-				  <tbody>
-				    <tr ng-repeat="tx in utxosData" ng-show="tx.tokenId">
-				      <td>
-				      	<span ng-show="tx.tokenId">
-				      		<a ui-sref="transaction({ txId: tx.txid })">{{ tx.txid | cut:true:15:'...' }}</a>
-				      	</span>
-				      	<span ng-show="!tx.tokenId">
-				      		<a href="https://explorer.nebl.io/tx/7{{ tx.txid }}" target="_blank">{{ tx.txid | cut:true:15:'...' }}</a>
-				      	</span>
-				      </td>
-				      <td>
-				      	{{ tx.displayTime }}
-				      </td>
-				      <td>
-				      	<span ng-show="tx.tokenId">
-				      		<a ui-sref="address({ address: tx.tokenTxInfo.fromAddress })">
-				      		{{ tx.tokenTxInfo.fromAddress | cut:true:15:'...' }}</a>
-				      	</span>
-				      	<span ng-show="!tx.tokenId">
-				      		{{  tx.fromAddresses[0] ? tx.fromAddresses[0] : '- -' | cut:true:15:'...' }}
-				      	</span>
-				      </td>
-				      <td>
-				      	<span ng-show="tx.tokenId">
-				      		<a ui-sref="address({ address: tx.tokenTxInfo.toAddress })">
-				      		{{ tx.tokenTxInfo.toAddress | cut:true:15:'...' }}</a>
-				      	</span>
-				      	<span ng-show="!tx.tokenId">
-				      		{{ tx.receivingAddresses[0] ? tx.receivingAddresses[0] : '- -' | cut:true:15:'...' }}
-				      	</span>
-				      </td>
-				      <td>
-				      	<span ng-show="tx.tokenId">
-				      		<a ui-sref="token({ tokenIdentifier: tx.tokenId })">{{ tokensObj[tx.tokenId].tokenName }}</a>
-				      	</span>
-				      	<span ng-show="!tx.tokenId">NEBL</span>
-				      </td>
-				      <td>
-				      	{{ tx.tokenId ? tx.tokenAmount : tx.totalsent / 10000000 }}
-				      </td>
-				    </tr>
-				  </tbody>
-				</table>
+asiodfnaoisndf
 			</div>
 		</div>
 		<!-- end utxos table row -->
