@@ -3,7 +3,34 @@
 		<!-- utxos table row -->
 		<div class="row">
 			<div class="col-md-12">
-asiodfnaoisndf
+				<table class="table">
+				  <thead class="thead">
+				    <tr>
+				      <th scope="col">Transaction ID</th>
+				      <th scope="col">Time</th>
+				      <th scope="col">Amount</th>
+				      <th scope="col">Recipient</th>
+				    </tr>
+				  </thead>
+				  <tbody>
+				    <tr ng-repeat="utxo in AddressInfo.utxosArray"
+				    	ng-show="utxo.displayData.txType === 'NTP1'">
+				      <td>
+				      	{{ utxo.txid | cut:true:20:'...' }}
+				      </td>
+				      <td>
+				      	{{ utxo.displayData.displayTime }}
+				      </td>
+				      <td>
+				      	{{ utxo.displayData.tokenAmount }} {{ AddressInfo.tokensDataObject
+[utxo.displayData.tokenId].tokenName }}
+				      </td>
+				      <td>
+				      	{{ utxo.scriptPubKey.addresses[0] | cut:true:20:'...' }}
+				      </td>
+				    </tr>
+				  </tbody>
+				</table>
 			</div>
 		</div>
 		<!-- end utxos table row -->
