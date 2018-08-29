@@ -21,6 +21,9 @@ app.config(function ($stateProvider) {
                         tokensDataObject[token.tokenId] = token;
                     });
                     utxoTxsAndData.tokensDataObject = tokensDataObject;
+                    return NeblioAPIFactory.fetchAddressInsightsData($stateParams.address);
+                }).then(addressInsights => {
+                    utxoTxsAndData.addressInsights = addressInsights;
                     return utxoTxsAndData;
                 });
             }

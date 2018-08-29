@@ -30,7 +30,6 @@ table a {
 //////////////////////////////
 // tables
 //////////////////////////////
-
 table {
 	background-color: white !important;
 	tr:nth-child(odd) {background-color: #f5f8fc;}	
@@ -53,22 +52,51 @@ thead.padded {
     }
   }
 }
-
 //////////////////////////////
 // end tables
 //////////////////////////////
 
+
+
+
+
+
 //////////////////////////////
 // text
 //////////////////////////////
-
 .bold {
   font-weight: bold;
 }
+//////////////////////////////
+// end text
+//////////////////////////////
+
+
+
+
+
 
 
 //////////////////////////////
-// end text
+// page header
+//////////////////////////////
+.page-header {
+  background-color: white;
+  padding: 30px 20px;
+  margin-bottom: 30px;
+
+  h1 {
+    margin-bottom: 0px;
+  }
+
+  .header-hash {
+    font-weight: regular;
+    font-size: 16px;
+    color: #777;
+  }
+}
+//////////////////////////////
+// end page header
 //////////////////////////////
 
 

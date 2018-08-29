@@ -1,5 +1,43 @@
 <div id="address">
 	<div class="container">
+		<!-- header -->
+		<div class="row">
+			<div class="col-md-12">
+				<div class="page-header">
+					<h1 class="bold">Address&nbsp;
+						<span class="header-hash break-word">{{ AddressInfo.addressInsights.addrStr }}</span>
+					</h1>
+				</div>
+			</div>
+		</div>
+		<!-- end header -->
+		<!-- balances  -->
+		<div class="row">
+			<div class="col-md-6 offset-md-3">
+				<table class="table">
+				  <thead class="thead">
+				    <tr>
+				      <th scope="col" colspan="2">Balances</th>
+				    </tr>
+				  </thead>
+				  <tbody>
+				    <tr>
+				      <td>NEBL</td>
+				      <td>{{ AddressInfo.addressInsights.balance }}</td>
+				    </tr>
+				    <tr ng-repeat="balObj in AddressInfo.tokenBalances">
+				      <td>
+				      	<a ui-sref="token({ tokenIdentifier: balObj.tokenId })">
+				      		{{ AddressInfo.tokensDataObject[balObj.tokenId].tokenName }}
+				      	</a>
+				      </td>
+				      <td>{{ balObj.tokenBalance }}</td>
+				    </tr>				    
+				  </tbody>
+				</table>
+			</div>
+		</div>
+		<!-- end balances -->
 		<!-- utxos table row -->
 		<div class="row">
 			<div class="col-md-12">
@@ -16,14 +54,17 @@
 				    <tr ng-repeat="utxo in AddressInfo.utxosArray"
 				    	ng-show="utxo.displayData.txType === 'NTP1'">
 				      <td>
-				      	{{ utxo.txid | cut:true:20:'...' }}
+				      	<a ui-sref="transaction({ txId: utxo.txid })">
+				      		{{ utxo.txid | cut:true:20:'...' }}
+				      	</a>
 				      </td>
 				      <td>
 				      	{{ utxo.displayData.displayTime }}
 				      </td>
 				      <td>
-				      	{{ utxo.displayData.tokenAmount }} {{ AddressInfo.tokensDataObject
-[utxo.displayData.tokenId].tokenName }}
+				      	{{ utxo.displayData.tokenAmount }}&nbsp;
+				      	<b><a ui-sref="token({ tokenIdentifier: utxo.displayData.tokenId })">{{ AddressInfo.tokensDataObject
+[utxo.displayData.tokenId].tokenName }}</a></b>
 				      </td>
 				      <td>
 				      	{{ utxo.scriptPubKey.addresses[0] | cut:true:20:'...' }}
