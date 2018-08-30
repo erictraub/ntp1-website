@@ -12,7 +12,7 @@
 		</div>
 		<!-- end header -->
 		<!-- balances  -->
-		<div class="row">
+		<div class="row marg-btm-1">
 			<div class="col-md-6 offset-md-3">
 				<table class="table">
 				  <thead class="thead">
@@ -41,37 +41,47 @@
 		<!-- utxos table row -->
 		<div class="row">
 			<div class="col-md-12">
-				<table class="table">
-				  <thead class="thead">
-				    <tr>
-				      <th scope="col">Transaction ID</th>
-				      <th scope="col">Time</th>
-				      <th scope="col">Amount</th>
-				      <th scope="col">Recipient</th>
-				    </tr>
-				  </thead>
-				  <tbody>
-				    <tr ng-repeat="utxo in AddressInfo.utxosArray"
-				    	ng-show="utxo.displayData.txType === 'NTP1'">
-				      <td>
-				      	<a ui-sref="transaction({ txId: utxo.txid })">
-				      		{{ utxo.txid | cut:true:20:'...' }}
-				      	</a>
-				      </td>
-				      <td>
-				      	{{ utxo.displayData.displayTime }}
-				      </td>
-				      <td>
-				      	{{ utxo.displayData.tokenAmount }}&nbsp;
-				      	<b><a ui-sref="token({ tokenIdentifier: utxo.displayData.tokenId })">{{ AddressInfo.tokensDataObject
-[utxo.displayData.tokenId].tokenName }}</a></b>
-				      </td>
-				      <td>
-				      	{{ utxo.scriptPubKey.addresses[0] | cut:true:20:'...' }}
-				      </td>
-				    </tr>
-				  </tbody>
-				</table>
+				<div class="table-overflow">
+					<table class="table">
+					  <thead class="thead">
+					  	<tr>
+					  		<th scope="col" colspan="4" style="background: white;">
+					  			<h1 class="bold">NTP1 Transactions</h1>
+					  		</th>
+					  	</tr>
+					    <tr>
+					      <th scope="col">Transaction ID</th>
+					      <th scope="col">Time</th>
+					      <th scope="col">Amount</th>
+					      <th scope="col">Recipient</th>
+					    </tr>
+					  </thead>
+					  <tbody>
+					    <tr ng-repeat="utxo in AddressInfo.utxosArray"
+					    	ng-if="utxo.displayData.txType === 'NTP1'">
+					      <td>
+					      	<a ui-sref="transaction({ txId: utxo.txid })">
+					      		{{ utxo.txid | cut:true:20:'...' }}
+					      	</a>
+					      </td>
+					      <td>
+					      	{{ utxo.displayData.displayTime }}
+					      </td>
+					      <td>
+					      	{{ utxo.displayData.tokenAmount }}&nbsp;
+					      	<b><a ui-sref="token({ tokenIdentifier: utxo.displayData.tokenId })">{{ AddressInfo.tokensDataObject
+	[utxo.displayData.tokenId].tokenName }}</a></b>
+					      </td>
+					      <td>
+					      	{{ utxo.scriptPubKey.addresses[0] | cut:true:20:'...' }}
+					      </td>
+					    </tr>
+					    <tr ng-show="!AddressInfo.allTokenIds.length">
+					    	<td class="text-center" colspan="4">No NTP1 Data Available</td>
+					    </tr>
+					  </tbody>
+					</table>
+				</div>
 			</div>
 		</div>
 		<!-- end utxos table row -->

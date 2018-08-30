@@ -9,7 +9,7 @@ body, html {
 }
 
 body {
-  padding-bottom: 30px;
+  padding-bottom: 50px;
 }
 
 table a {
@@ -24,6 +24,14 @@ table a {
 .break-word {
   overflow-wrap: break-word;
   word-wrap: break-word;
+}
+
+.text-grey {
+  color: #bdc0c1;
+}
+
+.marg-btm-1 {
+  margin-bottom: 30px;
 }
 
 
@@ -51,6 +59,10 @@ thead.padded {
       padding-bottom: 20px;
     }
   }
+}
+
+.table-overflow {
+  overflow-x: auto;
 }
 //////////////////////////////
 // end tables
@@ -82,7 +94,7 @@ thead.padded {
 //////////////////////////////
 .page-header {
   background-color: white;
-  padding: 30px 20px;
+  padding: 25px 20px;
   margin-bottom: 30px;
 
   h1 {

@@ -10,81 +10,88 @@
 				</div>
 			</div>
 		</div>
-		<div class="row">
+		<div class="row marg-btm-1">
 			<div class="col-md-6">
-				<table class="table">
-				  <tbody>
-				    <tr>
-				      <th scope="row">Name</th>
-				      <td>{{ tokenMetadata.description }}</td>
-				    <tr>
-				      <th scope="row">Symbol</th>
-				      <td>{{ tokenMetadata.tokenName }}</td>
-				    </tr>
-				    <tr>
-				      <th scope="row">Issuer</th>
-				      <td>{{ tokenMetadata.issuer }}</td>
-				    </tr>
-				    <tr>
-				      <th scope="row">Total Supply</th>
-				      <td>{{ tokenMetadata.totalSupply }}</td>
-				    </tr>
-				    <tr>
-				      <th scope="row">Token ID</th>
-				      <td>{{ tokenMetadata.tokenId }}</td>
-				    </tr>
-				  </tbody>
-				</table>
+				<div class="table-overflow">
+					<table class="table">
+					  <tbody>
+					    <tr>
+					      <th scope="row">Name</th>
+					      <td>{{ tokenMetadata.description }}</td>
+					  	</tr>
+					    <tr>
+					      <th scope="row">Symbol</th>
+					      <td>{{ tokenMetadata.tokenName }}</td>
+					    </tr>
+					    <tr>
+					      <th scope="row">Issuer</th>
+					      <td>{{ tokenMetadata.issuer }}</td>
+					    </tr>
+					    <tr>
+					      <th scope="row">Total Supply</th>
+					      <td>{{ tokenMetadata.totalSupply }}</td>
+					    </tr>
+					    <tr>
+					      <th scope="row">Token ID</th>
+					      <td>{{ tokenMetadata.tokenId }}</td>
+					    </tr>
+					  </tbody>
+					</table>
+				</div>
 			</div>
 			<div class="col-md-6">
-				<table class="table">
-				  <tbody>
-				    <tr>
-				      <th scope="row">First Block</th>
-				      <td>{{ tokenMetadata.firstBlock }}</td>
-				    </tr>
-				    <tr>
-				      <th scope="row">Number of Holders</th>
-				      <td>{{ tokenMetadata.numOfHolders }}</td>
-				    </tr>
-				    <tr>
-				      <th scope="row">Number of Transfers</th>
-				      <td>{{ tokenMetadata.numOfTransfers }}</td>
-				    </tr>
-				    <tr>
-				      <th scope="row">Aggregation Policy</th>
-				      <td>{{ tokenMetadata.aggregationPolicy }}</td>
-				    </tr>
-				    <tr>
-				      <th scope="row">Number of Issuance</th>
-				      <td>{{ tokenMetadata.numOfIssuance }}</td>
-				    </tr>
-				  </tbody>
-				</table>
+				<div class="table-overflow">
+					<table class="table">
+					  <tbody>
+					    <tr>
+					      <th scope="row">First Block</th>
+					      <td>{{ tokenMetadata.firstBlock }}</td>
+					    </tr>
+					    <tr>
+					      <th scope="row">Number of Holders</th>
+					      <td>{{ tokenMetadata.numOfHolders }}</td>
+					    </tr>
+					    <tr>
+					      <th scope="row">Number of Transfers</th>
+					      <td>{{ tokenMetadata.numOfTransfers }}</td>
+					    </tr>
+					    <tr>
+					      <th scope="row">Aggregation Policy</th>
+					      <td>{{ tokenMetadata.aggregationPolicy }}</td>
+					    </tr>
+					    <tr>
+					      <th scope="row">Number of Issuance</th>
+					      <td>{{ tokenMetadata.numOfIssuance }}</td>
+					    </tr>
+					  </tbody>
+					</table>
+				</div>
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-md-12">
-				<table class="table hover" id="holders-table">
-				  <thead class="thead padded">
-				    <tr>
-				      <th scope="col">Rank</th>
-				      <th scope="col">Address</th>
-				      <th scope="col">Amount</th>
-				      <th scope="col">Percentage</th>
-				    </tr>
-				  </thead>
-				  <tbody>
-				    <tr ng-repeat="holder in holders track by $index">
-				      <th scope="row">{{ $index + 1 }}</th>
-				      <td>
-				      	<a ui-sref="address({ address: holder.address })">{{ holder.address }}</a>
-				      </td>
-				      <td>{{ holder.amount }}</td>
-				      <td>{{ holder.percentage * 100 | number: 4 }}%</td>
-				    </tr>
-				  </tbody>
-				</table>
+				<div class="table-overflow">
+					<table class="table hover" id="holders-table">
+					  <thead class="thead padded">
+					    <tr>
+					      <th scope="col">Rank</th>
+					      <th scope="col">Address</th>
+					      <th scope="col">Amount</th>
+					      <th scope="col">Percentage</th>
+					    </tr>
+					  </thead>
+					  <tbody>
+					    <tr ng-repeat="holder in holders track by $index">
+					      <th scope="row">{{ $index + 1 }}</th>
+					      <td>
+					      	<a ui-sref="address({ address: holder.address })">{{ holder.address }}</a>
+					      </td>
+					      <td>{{ holder.amount }}</td>
+					      <td>{{ holder.percentage * 100 | number: 4 }}%</td>
+					    </tr>
+					  </tbody>
+					</table>
+				</div>
 			</div>
 		</div>
 	</div>
