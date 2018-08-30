@@ -3,11 +3,11 @@
     <div id="search-bar">
       <div class="centerr">        
 
-        <form class="form-inline justify-content-center" ng-submit="search()">
-          <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" placeholder="Search by address, block, token, or tx" style="width: 55%;" ng-model="searchText">
+        <form class="form-inline justify-content-center" ng-submit="search()" novalidate name="searchForm">
+          <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0 searchText" placeholder="Search by address, block, token, or tx" ng-model="searchText" ng-required="true" name="searchText">
 
-          <div class="input-group mb-2 mr-sm-2 mb-sm-0" style="width: 18%;">
-            <select class="form-control" ng-model="searchBy">
+          <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+            <select class="form-control searchBy" ng-model="searchBy" ng-required="true" name="searchBy">
               <option value="" disabled selected>Search by...</option>
               <option value="address">Address</option>
               <option value="block">Block</option>
@@ -16,7 +16,7 @@
             </select>
           </div>
 
-          <button type="submit" class="btn search-btn" style="width: 20%;">Search</button>
+          <button type="submit" class="btn search-btn">Search</button>
         </form>
 
       </div>
