@@ -9,6 +9,7 @@ app.controller('TokenController', function ($scope, TokenMetadata, NeblioAPIFact
 		setTimeout(function() {
 			$scope.$evalAsync();
 			$('#holders-table').DataTable();
+			$('.loading-div').css('display', 'none');
 		}, 0);
 	})
 

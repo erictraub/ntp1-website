@@ -21,5 +21,14 @@
 	#holders-table_info {
 		color: #bdc0c1;
 	}
+
+	.loading-div {
+		background: #013164;
+		height: 100%;
+		width: 100%;
+		position: absolute;
+		z-index: 10;
+		color: white;
+	}
 }
 
