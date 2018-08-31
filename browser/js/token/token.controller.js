@@ -1,7 +1,4 @@
 app.controller('TokenController', function ($scope, TokenMetadata, NeblioAPIFactory) {
-
-	console.log('All Token Data: ', TokenMetadata);
-
 	$scope.noData = false;
 	$scope.tokenMetadata = TokenMetadata;
 

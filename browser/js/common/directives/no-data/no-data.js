@@ -7,7 +7,7 @@ app.directive('nodata', function ($rootScope, $state) {
         },
         templateUrl: 'js/common/directives/no-data/no-data.html',
         link: function (scope) {
-        	console.log('herererere', scope);
+        	
         }
     };
 

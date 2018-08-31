@@ -1,6 +1,8 @@
 <div id="address">
 	<div class="container">
 		<searchbar></searchbar>
+	</div>
+	<div class="container" ng-if="!AddressInfo.error">
 		<!-- header -->
 		<div class="row">
 			<div class="col-md-12">
@@ -87,4 +89,5 @@
 		</div>
 		<!-- end utxos table row -->
 	</div>
+	<nodata ng-if="AddressInfo.error" message="AddressInfo.errorMessage"></nodata>
 </div>

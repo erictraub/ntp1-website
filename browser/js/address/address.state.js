@@ -24,7 +24,8 @@ app.config(function ($stateProvider) {
                     return NeblioAPIFactory.fetchAddressInsightsData($stateParams.address);
                 }).then(addressInsights => {
                     utxoTxsAndData.addressInsights = addressInsights;
-                    return utxoTxsAndData;
+                    if (addressInsights.error) return addressInsights;
+                    else return utxoTxsAndData;
                 });
             }
         }

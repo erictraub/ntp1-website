@@ -14,6 +14,8 @@ app.config(function ($stateProvider) {
                 }).then(tokenMetadata => {
                     allTxInfo.tokenMetadata = tokenMetadata;
                     return allTxInfo;
+                }).catch(err => {
+                    return { error: true, errorMessage: 'No data for transaction searched.' };
                 });
             }
         }

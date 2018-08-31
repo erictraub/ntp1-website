@@ -1,6 +1,8 @@
 <div id="block">
 	<div class="container">
 		<searchbar></searchbar>
+	</div>
+	<div class="container" ng-if="!blockData.error">
 		<div class="row">
 			<div class="col-md-12">
 				<div class="page-header">
@@ -152,4 +154,5 @@
 		</div>
 		<!-- end transactions row -->
 	</div>
+	<nodata ng-if="blockData.error" message="blockData.errorMessage"></nodata>
 </div>

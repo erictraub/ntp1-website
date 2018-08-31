@@ -61,8 +61,9 @@ app.factory('NeblioAPIFactory', function ($http, TransactionFactory) {
 		return $http.get(`/api/neblioAPI/ntp1/tx/${txId}`)
 		.then(function(response) {
 			let txData = response.data;
+			if (!txData.data.length) throw "No data for transaction searched.";
+
 			txData.displayTime = TransactionFactory.getDisplayTime(txData.time);
-			
 			let totalInput = 0;
 			let tokenId = null;
 			let tokenAmount = 0;

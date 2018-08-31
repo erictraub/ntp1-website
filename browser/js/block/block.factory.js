@@ -20,6 +20,7 @@ app.factory('BlockFactory', function ($http, NeblioAPIFactory) {
 		let blockData = {};
 		return NeblioAPIFactory.fetchBlockByHash(blockHash)
 		.then(block => {
+			if (block.error) throw "No data for block searched.";
 			blockData = block;
 			return BlockFactory.fetchNTP1TxInfoForArray(blockData.tx);
 		})
@@ -36,6 +37,8 @@ app.factory('BlockFactory', function ($http, NeblioAPIFactory) {
 				blockData.allTokensMetadata[result.tokenId] = result;
 			});
 			return blockData;
+		}).catch(err => {
+			return { error: true, errorMessage: 'No data for block searched.' };
 		});
 	};
 

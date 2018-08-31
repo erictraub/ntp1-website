@@ -27,7 +27,7 @@ router.get('/token/:tokenId/metadata', function (req, res) {
         if (!formattedMetadata.tokenId) return;
         return Token.create(formattedMetadata);
     }).catch(err => {
-        console.error(err);
+        console.error('Handled Error', err);
         res.send({ error: true, errorMessage: 'No data for token searched.' });
     });
 });
@@ -89,6 +89,10 @@ router.get('/ins/address/:address', function (req, res) {
     rp(requestOptions)
     .then(response => {
         res.json(response);
+    })
+    .catch(err => {
+        console.error('Handled Error', err);
+        res.send({ error: true, errorMessage: 'No data for address searched.' });
     });
 });
 
@@ -119,6 +123,10 @@ router.get('/ins/block/:blockHash', function (req, res) {
     rp(requestOptions)
     .then(response => {
         res.json(response);
+    })
+    .catch(err => {
+        console.error('Handled Error', err);
+        res.send({ error: true, errorMessage: 'No data for block searched.' });
     });
 });
 
