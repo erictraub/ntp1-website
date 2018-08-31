@@ -24,7 +24,11 @@ router.get('/token/:tokenId/metadata', function (req, res) {
     })
     .then(formattedMetadata => {
         res.send(formattedMetadata);
+        if (!formattedMetadata.tokenId) return;
         return Token.create(formattedMetadata);
+    }).catch(err => {
+        console.error(err);
+        res.send({ error: true, errorMessage: 'No data for token searched.' });
     });
 });
 
