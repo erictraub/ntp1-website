@@ -111,6 +111,20 @@ router.get('/ntp1/tx/:txId', function (req, res) {
     });
 });
 
+// get latest block
+router.get('/block/latest', function (req, res) {
+    const requestOptions = {
+        uri: `${neblioApiBaseUrl}/ins/status?q=getLastBlockHash`,
+        method: 'GET',
+        json: true
+    };
+
+    rp(requestOptions)
+    .then(response => {
+        res.json(response);
+    });
+});
+
 // get block by blockhash
 router.get('/ins/block/:blockHash', function (req, res) {
     const blockHash = req.params.blockHash;

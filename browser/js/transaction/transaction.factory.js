@@ -5,7 +5,7 @@ app.factory('TransactionFactory', function ($http) {
 	TransactionFactory.getDisplayTime = function(timeMS) {
 		const d = new Date(timeMS);
 		const month = d.getMonth() + 1;
-		const day = d.getDay();
+		const day = d.getDate();
 		const year = d.getFullYear();
 		const hour = d.getHours();
 		const minute = d.getMinutes();

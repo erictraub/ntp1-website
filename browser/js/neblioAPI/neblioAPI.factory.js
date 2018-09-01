@@ -61,7 +61,7 @@ app.factory('NeblioAPIFactory', function ($http, TransactionFactory) {
 		return $http.get(`/api/neblioAPI/ntp1/tx/${txId}`)
 		.then(function(response) {
 			let txData = response.data;
-			if (!txData.data.length) throw "No data for transaction searched.";
+			if (!txData.vin.length || !txData.vout.length) throw "No data for transaction searched.";
 
 			txData.displayTime = TransactionFactory.getDisplayTime(txData.time);
 			let totalInput = 0;
@@ -146,6 +146,13 @@ app.factory('NeblioAPIFactory', function ($http, TransactionFactory) {
 
     NeblioAPIFactory.fetchAllTransactionsForAddress = function(address) {
     	return $http.get(`/api/neblioAPI/ins/address/${address}/transactions`)
+		.then(function(response) {
+			return response.data;
+		});
+    };
+
+    NeblioAPIFactory.fetchLatestBlock = function() {
+    	return $http.get(`/api/neblioAPI/block/latest`)
 		.then(function(response) {
 			return response.data;
 		});

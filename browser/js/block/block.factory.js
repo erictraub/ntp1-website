@@ -51,7 +51,6 @@ app.factory('BlockFactory', function ($http, NeblioAPIFactory) {
 		txIdArray.forEach(txId => {
 			promises.push(BlockFactory.fetchNTP1TxInfo(txId));
 		});
-
 		return Promise.all(promises);
 	};
 
