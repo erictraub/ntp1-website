@@ -43,3 +43,47 @@ helperFuncs.getAllMetadataForToken = function(tokenId) {
         });
     });
 };
+
+helperFuncs.fetchLatestBlock = function() {
+    const requestOptions = {
+        uri: `${neblioApiBaseUrl}/ins/status?q=getLastBlockHash`,
+        method: 'GET',
+        json: true
+    };
+
+    return rp(requestOptions)
+    .then(response => {
+        return response.lastblockhash;
+    });
+};
+
+
+helperFuncs.fetchBlockByHash = function(blockHash) {
+    const requestOptions = {
+        uri: `${neblioApiBaseUrl}/ins/block/${blockHash}`,
+        method: 'GET',
+        json: true
+    };
+
+    return rp(requestOptions)
+    .then(response => {
+        return response;
+    })
+    .catch(err => {
+        console.error('Handled Error', err);
+        return { error: true, errorMessage: 'No data for block searched.' };
+    });
+};
+
+
+
+
+
+
+
+
+
+
+
+
+

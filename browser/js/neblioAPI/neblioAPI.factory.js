@@ -158,6 +158,20 @@ app.factory('NeblioAPIFactory', function ($http, TransactionFactory) {
 		});
     };
 
+    NeblioAPIFactory.fetchLatestBlocks = function() {
+    	return $http.get(`/api/neblioAPI/block-list/latest`)
+		.then(function(response) {
+			return response.data;
+		});
+    };
+
+    NeblioAPIFactory.fetchPopularTokens = function() {
+    	return $http.get(`/api/neblioAPI/tokens/popular`)
+		.then(function(response) {
+			return response.data;
+		});
+    };
+
 
     return NeblioAPIFactory;
 

@@ -4,17 +4,14 @@ app.config(function ($stateProvider) {
         controller: 'HomeController',
         templateUrl: 'js/home/home.html',
         resolve: {
-        	LatestBlock: function(BlockFactory, NeblioAPIFactory) {
-                return NeblioAPIFactory.fetchLatestBlock()
-                .then(latestBlock => {
-                    return BlockFactory.getAllBlockData(latestBlock.lastblockhash);
-                });
+            PopularTokens: function(NeblioAPIFactory) {
+                return NeblioAPIFactory.fetchPopularTokens();
             }
         }
     });
 });
 
 
-app.controller('HomeController', function ($scope, LatestBlock) {
-	$scope.blockData = LatestBlock;
+app.controller('HomeController', function ($scope, PopularTokens) {
+	$scope.PopularTokens = PopularTokens;
 });

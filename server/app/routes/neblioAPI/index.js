@@ -6,6 +6,7 @@ const rp = require('request-promise');
 const mongoose = require('mongoose');
 const Token = mongoose.model('Token');
 const helperFuncs = require('../../helperFunctions');
+const popularTokens = require('../../helperFunctions/popular-tokens');
 
 // get token metadata by id
 router.get('/token/:tokenId/metadata', function (req, res) {
@@ -174,6 +175,23 @@ router.get('/ins/address/:address/transactions', function (req, res) {
     });
 });
 
+
+// get 10 latest blocks
+// router.get('/block-list/latest', function (req, res) {
+//     helperFuncs.fetchLatestBlock()
+//     .then(latestBlockHash => {
+//         console.log('latestBlockHash', latestBlockHash)
+//         return helperFuncs.fetchBlockByHash(latestBlockHash);
+//     }).then(latestBlock => {
+//         return helperFuncs.fetchNextBlocks(latestBlock.hash, 9);
+//     });
+// });
+
+
+// get popular tokens
+router.get('/tokens/popular', function (req, res) {
+    res.json(popularTokens);
+});
 
 
 
