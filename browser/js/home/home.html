@@ -8,8 +8,8 @@
   				<h1 style="color:white; text-align: center; margin-bottom: 40px;">NTP1 Block Explorer</h1>
   			</div>
   		</div>
-		<!-- transactions row -->
-		<div class="row">
+		<!-- popular tokens row -->
+		<div class="row marg-btm-1">
 			<div class="col-md-12">
 				<div class="table-overflow">
 					<table class="table">
@@ -34,16 +34,22 @@
 					      	<img ng-src="{{ token.iconImage }}" style="height: 30px;">
 					      </td>
 					      <td>
-					      	{{ token.description }}
+					      	<a ui-sref="token({ tokenIdentifier: token.tokenId })">
+					      		{{ token.description }}
+					      	</a>
 					      </td>
 					      <td>
-					      	{{ token.tokenName }}
+					      	<a ui-sref="token({ tokenIdentifier: token.tokenId })">
+					      		{{ token.tokenName }}
+					      	</a>
 					      </td>
 					      <td>
 					      	{{ token.totalSupply }}
 					      </td>
 					      <td>
-					      	{{ token.tokenId }}
+					      	<a ui-sref="token({ tokenIdentifier: token.tokenId })">
+					      		{{ token.tokenId }}
+					      	</a>
 					      </td>
 					      <td>
 					      	{{ token.numOfHolders }}
@@ -54,6 +60,123 @@
 				</div>
 			</div>
 		</div>
-		<!-- end transactions row -->
+		<!-- end popular tokens row -->
+		<!-- latest block row -->
+		<div class="row">
+			<div class="col-md-12">
+				<div class="table-overflow">
+					<table class="table">
+					  <thead class="thead">
+					  	<tr style="background: white;">
+					  		<th scope="col" colspan="4">
+					  			<h1 class="bold">Latest Block&nbsp;
+					  				<span class="header-hash break-word">{{ LatestBlock.hash }}</span>
+					  			</h1>
+					  		</th>
+					  	</tr>
+					  </thead>
+					  <tbody>
+					  	<!-- row one -->
+					    <tr>
+					      <td class="bold">
+					      	Transactions
+					      </td>
+					      <td>
+					      	{{ LatestBlock.tx.length }}
+					      </td>
+					      <td class="bold">
+					      	Block Hash
+					      </td>
+					      <td>
+					      	<a ui-sref="block({ blockIdentifier: LatestBlock.hash })">
+					      		{{ LatestBlock.hash | cut:true:20:'...' }}
+					      	</a>
+					      </td>
+					    </tr>
+					    <!-- row two -->
+					    <tr>
+					      <td class="bold">
+					      	Confirmations
+					      </td>
+					      <td>
+					      	{{ LatestBlock.confirmations }}
+					      </td>
+					      <td class="bold">
+					      	Next Block Hash
+					      </td>
+					      <td>
+					      	- -
+					      </td>
+					    </tr>
+					    <!-- row three -->
+					    <tr>
+					      <td class="bold">
+					      	Height
+					      </td>
+					      <td>
+					      	<a ui-sref="block({ blockIdentifier: LatestBlock.hash })">
+					      		{{ LatestBlock.height }}
+					      	</a>
+					      </td>
+					      <td class="bold">
+					      	Previous Block Hash
+					      </td>
+					      <td>
+					      	<a ui-sref="block({ blockIdentifier: LatestBlock.previousblockhash })">
+					      		{{ LatestBlock.previousblockhash | cut:true:20:'...' }}
+					      	</a>
+					      </td>
+					    </tr>
+					    <!-- row four -->
+					    <tr>
+					      <td class="bold">
+					      	Reward
+					      </td>
+					      <td>
+					      	{{ LatestBlock.reward }}
+					      </td>
+					      <td class="bold">
+					      	Markle Root
+					      </td>
+					      <td>
+					      	{{ LatestBlock.merkleroot | cut:true:20:'...' }}
+					      </td>
+					    </tr>
+					    <!-- row five -->
+					    <tr>
+					      <td class="bold">
+					      	Timestamp
+					      </td>
+					      <td>
+					      	{{ LatestBlock.displayTime }}
+					      </td>
+					      <td class="bold">
+					      	Difficulty
+					      </td>
+					      <td>
+					      	{{ LatestBlock.difficulty }}
+					      </td>
+					    </tr>
+					    <!-- row six -->
+					    <tr>
+					      <td class="bold">
+					      	Size
+					      </td>
+					      <td>
+					      	{{ LatestBlock.size }} kB
+					      </td>
+					      <td class="bold">
+					      	Bits
+					      </td>
+					      <td>
+					      	{{ LatestBlock.bits }}
+					      </td>
+					    </tr>
+					  </tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		<!-- end latest block row -->
 	</div>
 </div>
