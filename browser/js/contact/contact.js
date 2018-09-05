@@ -8,5 +8,5 @@ app.config(function ($stateProvider) {
 
 
 app.controller('ContactController', function ($scope) {
-
+	
 });
