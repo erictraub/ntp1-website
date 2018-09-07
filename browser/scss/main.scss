@@ -44,6 +44,7 @@ table a {
 table {
 	background-color: white !important;
 	tr:nth-child(odd) {background-color: #f5f8fc;}	
+  tr:nth-child(even) {background-color: white;}  
 	th, td {
 		border: 0px !important;
 	}
