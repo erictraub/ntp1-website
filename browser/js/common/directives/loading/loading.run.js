@@ -6,6 +6,7 @@ app.run(['$rootScope',function($rootScope){
     });
     $rootScope.$on('$stateChangeSuccess', function() {
         $rootScope.stateIsLoading = false;
+        window.scrollTo(0, 0);
     });
     $rootScope.$on('$stateChangeError', function() {
         //catch error
